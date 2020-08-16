@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${sectionName}"></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/indexcommit.css">
+    <link rel="stylesheet" href="/css/iconfont.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="https://at.alicdn.com/t/font_1958467_kkned4ve3v.js"></script>
+    <script src="https://at.alicdn.com/t/font_1958467_6fmqea0lcuw.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .icon {
+            width: 1em; height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="navigation::nav"></div>
+<div class="container-fluid">
+    <div class="row mian">
+        <div class="col-lg-9 col-md-12 col-xs-12">
+            <ul class="nav nav-tabs aw-nav-tabs active hidden-xs">
+                <h3 style="margin-top: 25px">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-icon_A"></use>
+                    </svg>
+                    <span th:text="${sectionName}"></span>
+                </h3>
+            </ul>
+            <div class="media btn-publish-zhanshi-body" th:each="geRenList : ${geRenList}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="img-rounded index-touxiang"
+                             th:src="${geRenList.user.getFigureurlQq()}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${geRenList.getTitle()}"></h4>
+                    <span th:text="${geRenList.getDescription()}"></span>
+                    <br/>
+                    <span class="text-desc">
+                        <span th:text="${geRenList.getCommentCount()
+                    }"/> 个回复
+                        •
+                        <span th:text="${geRenList.getViewCount()}"/> 次浏览 • <span th:text="${#dates.format(geRenList.getGmtCreate(),'yyyy-MM-dd HH:mm')}"></span></span>
+                </div>
+            </div>
+            <div th:if="${fenYeKaiGuan} == 1">
+                <nav aria-label="Page navigation" style="float: right" th:if="${dangQianYe<2}">
+                    <ul class="pagination">
+                        <li th:if="${dangQianYe>1 and dangQianYe-1!=0}">
+                            <a  th:href="@{'/profile/questions?page='+${dangQianYe-1}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li th:if="${dangQianYe>4}"><a href="/profile/questions?page=1">首页</a></li>
+                        <li><a href="/profile/questions?page=1">1</a></li>
+                        <li th:if="${zongYeShu>1}"><a href="/profile/questions?page=2">2</a></li>
+                        <li th:if="${zongYeShu>2}"><a href="/profile/questions?page=3">3</a></li>
+                        <li><a th:href="@{'/profile/questions?page='+${zongYeShu}}">尾页</a></li>
+                        <li th:if="${dangQianYe!=zongYeShu}">
+                            <a th:href="@{'/profile/questions?page='+${dangQianYe+1}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav aria-label="Page navigation" style="float: right" th:if="${dangQianYe>1 and dangQianYe<zongYeShu}">
+                    <ul class="pagination">
+                        <li th:if="${dangQianYe>1}">
+                            <a th:href="@{'/profile/questions?page='+${dangQianYe-1}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li th:if="${dangQianYe>4}"><a href="/profile/questions?page=1">首页</a></li>
+                        <li><a th:href="@{'/profile/questions?page='+${dangQianYe-1}}"><span th:text="${dangQianYe}-1"/></a></li>
+                        <li><a th:href="@{'/profile/questions?page='+${dangQianYe}}"><span th:text="${dangQianYe}"/></a></li>
+                        <li th:if="${dangQianYe>1}"><a th:href="@{'/profile/questions?page='+${dangQianYe+1}}"><span th:text="${dangQianYe}+1"/></a></li>
+                        <li th:if="${dangQianYe}<${zongYeShu-3}"><a th:href="@{'/profile/questions?page='+${zongYeShu}}">尾页</a></li>
+                        <li th:if="${dangQianYe}<${zongYeShu}">
+                            <a th:href="@{'/profile/questions?page='+${dangQianYe+1}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav aria-label="Page navigation" style="float: right" th:if="${dangQianYe>zongYeShu-1}">
+                    <ul class="pagination">
+                        <li th:if="${dangQianYe>1}">
+                            <a th:href="@{'/profile/questions?page='+${dangQianYe-1}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li th:if="${dangQianYe == zongYeShu and dangQianYe-1!=0}"><a href="/profile/questions?page=1">首页</a></li>
+                        <li th:if="${dangQianYe>1}"><a th:href="@{'/profile/questions?page='+${zongYeShu-2}}" th:text="${zongYeShu-2}"></a></li>
+                        <li th:if="${dangQianYe>2}"><a th:href="@{'/profile/questions?page='+${zongYeShu-1}}" th:text="${zongYeShu-1}"></a></li>
+                        <li th:if="${dangQianYe>3}"><a th:href="@{'/profile/questions?page='+${zongYeShu}}" th:text="${zongYeShu}"></a></li>
+                        <li th:if="${dangQianYe}<${zongYeShu-3}"><a th:href="@{'/profile/questions?page='+${zongYeShu}}">尾页</a></li>
+                        <li th:if="${dangQianYe}<${zongYeShu}">
+                            <a th:href="@{'/profile/questions?page='+${dangQianYe+1}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            </div>
+        <div class="list-group col-lg-3 col-md-12 col-xs-12" style="margin-top: 30px">
+            <a href="/profile/questions" th:class="${section == 'questions'}? 'list-group-item active' : 'list-group-item '">我的问题
+                <span class="badge" th:text="${wenTiShuLiang}"></span>
+            </a>
+            <a href="/profile/repies" th:class="${section == 'repies'}? 'list-group-item active' : 'list-group-item'">最新回复
+                <span class="badge" th:text="${zuiXinHuiFuShuLiang}"></span>
+            </a>
+        </div>
+    </div>
+
+    </div>
+</div>
+
+</body>
+</html>

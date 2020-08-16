@@ -1,0 +1,17 @@
+.index-touxiang{
+    width: 45px;
+    height: 45px;
+}
+.mian{
+    margin-top: 30px;
+    margin-left: 125px;
+    margin-right: 125px;
+    background-color:white;
+}
+body{
+    background-image: url("https://elasticsearch.cn/static/css/default/img/bg.jpg");
+}
+.btn-publish-zhanshi-body{
+    margin-bottom: 30px;
+}
+

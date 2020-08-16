@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="nav">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">小柏林社区</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand btn-publish-toubu-xiayi" href="/" style="font-size: 20px;font-family: 楷体;color: #2aabd2">小柏林社区</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group btn-publish-toubu-xiayi">
+                            <input type="text" class="form-control" placeholder="搜索问题">
+                        </div>
+                        <button type="submit" class="btn btn-default btn-publish-toubu-xiayi">搜索</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li th:if="${session.user!=null}" style="margin-top: 15px;margin-right: 20px">
+
+                            <a href="/publish">
+                                提问
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-combinedshapecopy2"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="dropdown" th:if="${session.user!=null}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <img th:src="${session.user.getFigureurlQq()}" class="img-rounded" style="height: 40px;width: 40px">
+                                <span class="caret" ></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li style="margin-top: 20px;margin-left: 20px;margin-bottom: 0px">欢迎你,<span th:text="${session.user.getName()}"/></li>
+                                <hr/>
+                                <li><a href="/profile/questions">我的问题</a></li>
+                                <li><a href="#">个人资料</a></li>
+                                <li><a href="/tuichu">退出登录</a></li>
+                            </ul>
+                        </li>
+                        <li th:if="${session.user == null}">
+                            <a href="https://graph.qq.com/oauth2.0/authorize?client_id=101881732&redirect_uri=http://127.0.0.1:8080/callback&response_type=code&state=1" class="btn-publish-toubu-xiayi">登录</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>

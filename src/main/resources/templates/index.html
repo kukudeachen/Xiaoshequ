@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>小柏林社区</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/indexcommit.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="https://at.alicdn.com/t/font_1958467_kkned4ve3v.js"></script>
+    <script src="https://at.alicdn.com/t/font_1958467_6fmqea0lcuw.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .icon {
+            width: 1em; height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="navigation::nav"></div>
+<div class="container-fluid">
+    <div class="row mian">
+        <div class="col-lg-9 col-md-12 col-xs-12">
+            <ul class="nav nav-tabs aw-nav-tabs active hidden-xs">
+                <h3 style="margin-top: 25px">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-icon_A"></use>
+                    </svg>
+                    发现
+                </h3>
+                <li><a style="color: #4cae4c">欢</a></li>
+                <li><a style="color: #4cae4c">迎</a></li>
+                <li><a style="color: #4cae4c">光</a></li>
+                <li><a style="color: #4cae4c">临</a></li>
+            </ul>
+            <div class="media btn-publish-zhanshi-body" th:each="question : ${question}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="img-rounded index-touxiang"
+                             th:src="${question.user.getFigureurlQq()}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.getTitle()}"></h4>
+                    <span th:text="${question.getDescription()}"></span>
+                    <br/>
+                    <span class="text-desc">
+                        <span th:text="${question.getCommentCount()
+                    }"/> 个回复
+                        •
+                        <span th:text="${question.getViewCount()}"/> 次浏览 • <span th:text="${#dates.format(question.getGmtCreate(),'yyyy-MM-dd HH:mm')}"></span></span>
+                </div>
+            </div>
+            <nav aria-label="Page navigation" style="float: right" th:if="${dangQianYe<2}">
+                <ul class="pagination">
+                    <li th:if="${dangQianYe>1 and dangQianYe-1!=0}">
+                        <a  th:href="@{'/fenye?page='+${dangQianYe-1}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li th:if="${dangQianYe>4}"><a href="/fenye?page=1">首页</a></li>
+                    <li><a href="/fenye?page=1">1</a></li>
+                    <li th:if="${zongYeShu>1}"><a href="/fenye?page=2">2</a></li>
+                    <li th:if="${zongYeShu>2}"><a href="/fenye?page=3">3</a></li>
+                    <li><a th:href="@{'/fenye?page='+${zongYeShu}}">尾页</a></li>
+                    <li th:if="${dangQianYe!=zongYeShu}">
+                        <a th:href="@{'/fenye?page='+${dangQianYe+1}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <nav aria-label="Page navigation" style="float: right" th:if="${dangQianYe>1 and dangQianYe<zongYeShu}">
+                <ul class="pagination">
+                    <li th:if="${dangQianYe>1}">
+                        <a th:href="@{'/fenye?page='+${dangQianYe-1}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li th:if="${dangQianYe>4}"><a href="/fenye?page=1">首页</a></li>
+                    <li><a th:href="@{'/fenye?page='+${dangQianYe-1}}"><span th:text="${dangQianYe}-1"/></a></li>
+                    <li><a th:href="@{'/fenye?page='+${dangQianYe}}"><span th:text="${dangQianYe}"/></a></li>
+                    <li th:if="${dangQianYe>1}"><a th:href="@{'/fenye?page='+${dangQianYe+1}}"><span th:text="${dangQianYe}+1"/></a></li>
+                    <li th:if="${dangQianYe}<${zongYeShu-3}"><a th:href="@{'/fenye?page='+${zongYeShu}}">尾页</a></li>
+                    <li th:if="${dangQianYe}<${zongYeShu}">
+                        <a th:href="@{'/fenye?page='+${dangQianYe+1}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <nav aria-label="Page navigation" style="float: right" th:if="${dangQianYe>zongYeShu-1}">
+                <ul class="pagination">
+                    <li th:if="${dangQianYe>1}">
+                        <a th:href="@{'/fenye?page='+${dangQianYe-1}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li th:if="${dangQianYe == zongYeShu and dangQianYe-1!=0}"><a href="/fenye?page=1">首页</a></li>
+                    <li th:if="${dangQianYe>1}"><a th:href="@{'/fenye?page='+${zongYeShu-2}}" th:text="${zongYeShu-2}"></a></li>
+                    <li th:if="${dangQianYe>2}"><a th:href="@{'/fenye?page='+${zongYeShu-1}}" th:text="${zongYeShu-1}"></a></li>
+                    <li th:if="${dangQianYe>3}"><a th:href="@{'/fenye?page='+${zongYeShu}}" th:text="${zongYeShu}"></a></li>
+                    <li th:if="${dangQianYe}<${zongYeShu-3}"><a th:href="@{'/fenye?page='+${zongYeShu}}">尾页</a></li>
+                    <li th:if="${dangQianYe}<${zongYeShu}">
+                        <a th:href="@{'/fenye?page='+${dangQianYe+1}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+            <h3>热门书籍</h3>
+            <img src="img/mysql.gif" style="width: 250px;height: 300px">
+            <hr/>
+            <h3>作者正在修复Bug</h3>
+            <img src="img/resolveBug.gif" style="margin-bottom: 30px;width: 220px;height: 110px">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

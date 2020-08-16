@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>发布 —— 小柏林社区</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/publish.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="https://at.alicdn.com/t/font_1958467_kkned4ve3v.js"></script>
+    <script src="https://at.alicdn.com/t/font_1958467_6fmqea0lcuw.js"></script>
+    <script src="https://at.alicdn.com/t/font_1958467_bd77vtkouki.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .icon {
+            width: 1em; height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="navigation :: nav"></div>
+<div class="container-fluid main">
+    <div class="row mian">
+        <div class="col-lg-9 col-md-12 col-xs-12">
+            <h3 style="margin-top: 25px">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-xiewenzhang"></use>
+                </svg>
+                写文章
+            </h3>
+            <hr/>
+
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="bs-example-navbar-collapse-1">问题标题(简单扼要) :</label>
+                    <input type="text" class="form-control" th:value="${title}" name="title" id="title_a" placeholder="问题标题....">
+                </div>
+                <div class="form-group">
+                    <label for="bs-example-navbar-collapse-1">问题补充(必填，请参照右侧提示) :</label>
+                    <textarea name="description" id="description" th:text=" ${description}" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="title_a">添加标签 :</label>
+                    <input type="text" class="form-control" id="tag" th:value="${tag}" name="tag" placeholder="输入标签,以逗号分隔！">
+                </div>
+                <div class="container-fluid main">
+                    <div class="row">
+                    <div class="alert alert-danger col-lg-9 col-md-12 col-xs-12" th:text="${error}"
+                        th:if="${error!=null}"></div>
+                        <div class="col-lg-3 col-md-12 col-xs-12"></div>
+                    <button type="submit" class="btn btn-success fabu ">
+                        发布
+                    </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+            <h3>问题发起指南</h3>
+            <br/>
+            <p class="mod-body-p">
+                • 问题标题: 请用<b style="color: red">精简</b>的语言描述您发布的问题，不超过25字<br/>
+
+            • 问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料：<br/>
+            </p>
+            服务器运行环境信息；<br/>
+            软件版本；<br/>
+            问题发生的上下文信息；<br/>
+            可以完整复现问题的代码（如可直接运行于 Kibana Console 的复现流程）；<br/>
+            补充完整的异常和错误信息；<br/>
+            注意阅读格式友好，代码和异常信息请用代码标签格式化张贴；<br/>
+            <p class="mod-body-p">
+            • 选择标签: 选择一个或者多个合适的标签，不超过10个字
+            </br>
+            • 关于积分： 发起一个问题会消耗您 20 个积分, 每多一个回复你将获得 5 个积分的奖励 ,为了您的利益, 在发起问题的时候希望能够更好的描述您的问题以及多使用站内搜索功能.
+            </p>
+            <b/>
+            <div class="col-lg-2 col-md-12 col-xs-12">
+                <svg class="icon" aria-hidden="true" font-size="43px" >
+                    <use xlink:href="#icon-jinggao"></use>
+                </svg>
+            </div>
+                <div  class="col-lg-10 col-md-12 col-xs-12" style="font-size: 15px;color: red;font-family: 楷体">
+                    未登录发布文章会被强制返回到主页面进行登录！！！！
+                </div>
+    </div>
+</div>
+</body>
+</html>

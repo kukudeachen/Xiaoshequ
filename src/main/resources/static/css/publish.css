@@ -1,0 +1,18 @@
+.mian{
+    margin-top: 30px;
+    margin-left: 125px;
+    margin-right: 125px;
+    background-color:white;
+}
+body{
+    background-image: url("https://elasticsearch.cn/static/css/default/img/bg.jpg");
+}
+.fabu{
+    float:right;
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+.mod-body-p{
+    padding: 10px 0;
+    color: #999;
+}
