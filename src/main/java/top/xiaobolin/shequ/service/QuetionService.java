@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2020/7/21/0021 - 15:32
  */
 @Service
-public class QuetionServce {
+public class QuetionService {
     @Autowired
     private QuesstionMapper quesstionMapper;
 
@@ -58,5 +58,12 @@ public class QuetionServce {
             questionDTOS.add(questionDTO);
         }
         return questionDTOS;
+    }
+
+    public QuestionDTO getById(Integer id) {
+        Question question = quesstionMapper.getByID(id);
+        QuestionDTO questionDTO = new QuestionDTO();
+        BeanUtils.copyProperties(question,questionDTO);//questionDTO完全替换Question
+        return questionDTO;
     }
 }

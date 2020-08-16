@@ -41,6 +41,10 @@ public class PublishController {
             @RequestParam("tag")String tag,
             HttpServletRequest request,
             Model model){
+        User user = (User) request.getSession().getAttribute("user");
+        if (user ==null) {
+            return "redirect:/";
+        }
         model.addAttribute("title",title );
         model.addAttribute("description",description);
         model.addAttribute("tag",tag);
@@ -56,10 +60,6 @@ public class PublishController {
             model.addAttribute("error","标签不能为空！");
             return "publish";
         }
-        User user = (User) request.getSession().getAttribute("user");
-        if (user ==null) {
-            return "redirect:/";
-        }else {
             Question question = new Question();
             question.setTitle(title);
             question.setDescription(description);
@@ -72,6 +72,6 @@ public class PublishController {
             question.setUserName(s);
             quesstionMapper.create(question);
             return "redirect:/";
-        }
+
     }
 }

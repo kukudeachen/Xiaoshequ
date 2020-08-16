@@ -6,13 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.RequestScope;
 import top.xiaobolin.shequ.dto.Fenye;
 import top.xiaobolin.shequ.dto.QuestionDTO;
-import top.xiaobolin.shequ.mapper.QuesstionMapper;
 import top.xiaobolin.shequ.mapper.UserMapper;
 import top.xiaobolin.shequ.model.User;
-import top.xiaobolin.shequ.service.QuetionServce;
+import top.xiaobolin.shequ.service.QuetionService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +26,7 @@ public class ProfileController {
     @Autowired
     private UserMapper userMapper;
     @Autowired
-    private QuetionServce quetionServce;
+    private QuetionService quetionService;
 
     @GetMapping("/profile/{action}")
     public  String Profile(
@@ -58,7 +56,7 @@ public class ProfileController {
                 }
                 int kaishi = (page - 1) * size;
                 Fenye fenye = new Fenye();
-                Integer zongShu = quetionServce.geZong(token);
+                Integer zongShu = quetionService.geZong(token);
                 if (zongShu != null || zongShu != 0) {
                     int zongYeShu = zongShu % size == 0 ? zongShu / size : zongShu / size + 1;
                     fenye.setZongYeShu(zongYeShu);
@@ -68,7 +66,7 @@ public class ProfileController {
                 model.addAttribute("dangQianYe", page);
                 model.addAttribute("zongYeShu", fenye.getZongYeShu());
                 if (page != null || page != 0) {
-                    List<QuestionDTO> questionDTOS = quetionServce.geRenList(kaishi,size,token);
+                    List<QuestionDTO> questionDTOS = quetionService.geRenList(kaishi,size,token);
                     model.addAttribute("geRenList", questionDTOS);
                 }
                 model.addAttribute("wenTiShuLiang",zongShu);

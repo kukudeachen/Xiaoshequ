@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.taglibs.standard.extra.spath.Step;
+import top.xiaobolin.shequ.dto.QuestionDTO;
 import top.xiaobolin.shequ.model.Question;
 
 import java.util.List;
@@ -30,4 +31,7 @@ public interface QuesstionMapper {
 
     @Select("SELECT COUNT(1) FROM question WHERE account_id = ALL (SELECT account_id FROM `user` WHERE token = #{token});")
     Integer geZong(@Param("token") String token);
+
+    @Select("select * from question where id = #{id}")
+    Question getByID(@Param("id") Integer id);
 }

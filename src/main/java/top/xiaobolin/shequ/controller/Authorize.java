@@ -48,19 +48,11 @@ public class Authorize {
         System.out.println("获取openid路径");
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         //App id
-<<<<<<< HEAD
         accessTokenDTO.setClient_id(clientId);
         //回执地址
         accessTokenDTO.setRedirect_uri(clientUrl);
         //app key
         accessTokenDTO.setClient_secret(clientSecret);
-=======
-        accessTokenDTO.setClient_id("id");
-        //回执地址
-        accessTokenDTO.setRedirect_uri("url");
-        //app key
-        accessTokenDTO.setClient_secret("key");
->>>>>>> 53644dd3eedff0854b9d9fc8f1d92449b10d39e1
         accessTokenDTO.setCode(code);
         accessTokenDTO.setGrant_type("authorization_code");
         //accessToken
