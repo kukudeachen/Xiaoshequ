@@ -51,7 +51,6 @@ public class ProfileController {
                         if (cookie.getName().equals("token")) {
                             token = cookie.getValue();
                         }
-                        break;
                     }
                 }
                 int kaishi = (page - 1) * size;

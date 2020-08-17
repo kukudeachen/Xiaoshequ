@@ -25,8 +25,7 @@ public class SesstionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                System.out.println("cookieName:"+cookie.getName());
+            for (Cookie cookie:cookies) {
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();
                     User user = userMapper.findByToken(token);
@@ -34,7 +33,6 @@ public class SesstionInterceptor implements HandlerInterceptor {
                         request.getSession().setAttribute("user", user);
                     }
                 }
-                break;
             }
         }
         return true;
