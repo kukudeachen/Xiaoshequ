@@ -1,5 +1,6 @@
 package top.xiaobolin.shequ.service;
 
+import com.vdurmont.emoji.EmojiParser;
 import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.BeanUtils;
@@ -30,6 +31,8 @@ public class QuetionService {
         List<Question> questions = quesstionMapper.list(page,size);
         List<QuestionDTO> questionDTOS = new ArrayList<>();
         for (Question question : questions) {
+            String neirong = EmojiParser.parseToUnicode(question.getDescription());
+            question.setDescription(neirong);
             User user = userMapper.findById(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question, questionDTO);

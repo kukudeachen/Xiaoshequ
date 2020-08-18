@@ -62,7 +62,8 @@ public class PublishController {
         }
             Question question = new Question();
             question.setTitle(title);
-            question.setDescription(description);
+            String neirong = EmojiParser.parseToAliases(description);//将表情符号转为字符
+            question.setDescription(neirong);
             question.setTag(tag);
             question.setCreator(user.getId());
             question.setGmtCreate(System.currentTimeMillis());
