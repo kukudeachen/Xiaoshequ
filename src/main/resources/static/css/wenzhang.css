@@ -1,0 +1,50 @@
+.font-color-999{
+    font-style: normal;
+    font-size: 12px;
+    color: #999999;
+}
+.aw-question-tags{
+    display: inline-block;
+    padding: 0 5px;
+    color: #999;
+    height: 20px;
+    background-color: #f2f2f2;
+    line-height: 20px;
+    font-size: 12px;
+}
+.wenzhang-bady{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+.wentou-you-zuozhe{
+    margin-left: -1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.mod-head{
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+.mod-touxiang{
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+}
+.mod-name{
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: normal;
+}
+.mod-left{
+    float: left!important;
+}
+.wenti-body{
+    padding-top: 20px;
+    padding-left: 2px;
+    margin-bottom: 20px;
+}
+.wentiye-hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

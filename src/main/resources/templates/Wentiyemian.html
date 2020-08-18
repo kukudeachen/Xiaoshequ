@@ -8,9 +8,15 @@
     <link rel="stylesheet" href="css/indexcommit.css">
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/wenzhang.css">
+    <link rel="stylesheet" type="text/css" href="css/wangEditor-fullscreen-plugin.css">
+    <script src="./js/wangEditor.js"></script>
+    <script src="./js/wangEditor.min.js"></script>
+    <script src="./js/wangEditor-fullscreen-plugin.js"></script>
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="https://at.alicdn.com/t/font_1958467_kkned4ve3v.js"></script>
     <script src="https://at.alicdn.com/t/font_1958467_6fmqea0lcuw.js"></script>
+    <script src="https://at.alicdn.com/t/font_1958467_q7afncrstr.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <style type="text/css">
         .icon {
@@ -20,20 +26,109 @@
             overflow: hidden;
         }
     </style>
+    <style>
+        @font-face {
+            font-family:fz;
+            src: url("./fonts/FZZJ-YDSXSJW.TTF");
+        }
+    </style>
+    <style>
+        @font-face {
+            font-family:fz1;
+            src: url("./fonts/FZZJ-YDSXSJW.TTF");
+        }
+    </style>
+    <link rel="stylesheet" href="../static/css/wenzhang.css">
 </head>
 <body>
+<div id="quanqing"></div>
 <div th:insert="navigation::nav"></div>
 <div class="container-fluid">
     <div class="row mian">
         <div class="col-lg-9 col-md-12 col-xs-12" style="border-right:1px dashed #0f0f0f">
-            <div class="modal-header">
-                <h1>Elastic日报 第1030期 (2020-08-15)</h1>
+            <div class="modal-header" style="margin-bottom: 0px">
+                <h2><span style="font-family:'fz'">Elastic日报 第1030期 (2020-08-15)</span></h2>
+                <em class="font-color-999">
+                    <a class="aw-question-tags" href="#" style="text-decoration: none">河间日报</a>
+                    |作者
+                    <a href="#" style="text-decoration: none">顾沫</a>
+                    |发布时间:
+                    <span>2001</span>
+                    |回复数:
+                    <span>0</span>
+                    |浏览数:
+                    <span>0</span>
+                </em>
+            </div>
+            <div class="wenzhang-bady">
+                <div class="wenti-body">
+                    1.在Ubuntu安装ElasticSearch。<br/>
+                    https://techexpert.tips/elasti ... inux/
+                    <br/>
+                    2.为ElasticSearch搜索添加身份验证。
+                    <br/>
+                    https://blogs.sap.com/2019/10/ ... arch/
+                    <br/>
+                    3.苹果陷入游戏行业的战争中，IOS的未来已成定局？
+                    <br/>
+                    https://www.theverge.com/2020/ ... f33b4
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    编辑：至尊宝
+                    <br/>
+                    归档：https://ela.st/cn-daily-all
+                    <br/>
+                    订阅：https://ela.st/cn-daily-sub
+                    <br/>
+                    沙龙：https://ela.st/cn-meetup
+                    <br/>
+                </div>
+                <hr class="wentiye-hr"/>
+                <div class="aw-question-tags">
+                    [尊重社区原创，转载请保留或注明出处]
+                    <br/>
+                    本文地址：http://elasticsearch.cn/article/14063
+                </div>
+                <hr class="wentiye-hr"/>
+                <h3 style="font-family: fz"><span>0</span>个回复</h3>
+                <hr class="wentiye-hr"/>
+                <div id="editor">
+                </div>
             </div>
         </div>
+        <!--右边-->
         <div class="col-lg-3 col-md-12 col-xs-12">
-
+            <div class="wentou-you-zuozhe">
+                <h3 class="mod-head" style="font-family:'fz1'">发起人</h3>
+            </div>
+            <div class="modal-body">
+                <dl>
+                <dt class="mod-left">
+                    <a href="#">
+                    <img src="http://thirdqq.qlogo.cn/g?b=oidb&k=eHh9ZktlYlSSKjzk7wiadTw&s=640&t=1597314731" alt="头像" class="img-rounded mod-touxiang">
+                    </a>
+                </dt>
+                <dd class="mod-left">
+                    <a href="#" class="mod-name" style="text-decoration: none">顾沫</a>
+                </dd>
+                </dl>
+            </div>
+            <div ></div>
+            <hr/>
+            <div class="wentou-you-zuozhe">
+                <h3 class="mod-head" style="font-family:'fz1'">热门活动</h3>
+            </div>
         </div>
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.create();
+    E.fullscreen.init(editor);
+    E.viewSource.init(editor);
+</script>
 </html>
