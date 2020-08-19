@@ -63,10 +63,9 @@ public class QuetionService {
         return questionDTOS;
     }
 
-    public QuestionDTO getById(Integer id) {
-        Question question = quesstionMapper.getByID(id);
-        QuestionDTO questionDTO = new QuestionDTO();
-        BeanUtils.copyProperties(question,questionDTO);//questionDTO完全替换Question
-        return questionDTO;
+    public Question getById(Integer id) {
+        Question question = new Question();
+        Question wenZhang = quesstionMapper.getByID(id);
+        return wenZhang;
     }
 }

@@ -1,12 +1,17 @@
 package top.xiaobolin.shequ.controller;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import top.xiaobolin.shequ.dto.QuestionDTO;
+import top.xiaobolin.shequ.model.Question;
 import top.xiaobolin.shequ.service.QuetionService;
+
+import java.util.List;
 
 /**
  * @author：xiaobolin
@@ -17,18 +22,15 @@ public class XiangxiController {
     @Autowired
     private QuetionService quetionService;
 
-    @GetMapping("/wenti/{id}")
+    @GetMapping("/wenti")
     public String Xiangxiwenti(
-            @PathVariable(name = "id") Integer id,
+            @RequestParam(name = "id")Integer id,
             Model model
     ){
-
-    QuestionDTO questionDTO = quetionService.getById(id);
-    model.addAttribute("question",questionDTO);
+        Question wenZhangYe = quetionService.getById(id);
+        model.addAttribute("wenZhangYe",wenZhangYe);
+        model.addAttribute("wenzhang", JSON.toJSONString(wenZhangYe.getDescription()));
     return "Wentiyemian";
     }
-    @GetMapping("/Wentiyemian")
-    public String wenti(){
-        return "Wentiyemian";
-    }
+
 }
