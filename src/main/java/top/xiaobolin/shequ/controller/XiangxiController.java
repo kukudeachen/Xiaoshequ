@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import top.xiaobolin.shequ.dto.QuestionDTO;
 import top.xiaobolin.shequ.model.Question;
+import top.xiaobolin.shequ.model.User;
 import top.xiaobolin.shequ.service.QuetionService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -25,11 +27,15 @@ public class XiangxiController {
     @GetMapping("/wenti")
     public String Xiangxiwenti(
             @RequestParam(name = "id")Integer id,
-            Model model
+            Model model,
+            HttpServletRequest request
     ){
         Question wenZhangYe = quetionService.getById(id);
+        User user = quetionService.getUser(id);
+        model.addAttribute("user",user);
+        model.addAttribute("usertwo",request.getSession().getAttribute("user"));
         model.addAttribute("wenZhangYe",wenZhangYe);
-        model.addAttribute("wenzhang", JSON.toJSONString(wenZhangYe.getDescription()));
+        model.addAttribute("wenzhang",wenZhangYe.getDescription());
     return "Wentiyemian";
     }
 

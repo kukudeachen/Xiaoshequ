@@ -20,6 +20,7 @@ import java.util.List;
  */
 @Service
 public class QuetionService {
+    public Object getBenRenUser;
     @Autowired
     private QuesstionMapper quesstionMapper;
 
@@ -68,4 +69,12 @@ public class QuetionService {
         Question wenZhang = quesstionMapper.getByID(id);
         return wenZhang;
     }
+
+    public User getUser(Integer id) {
+        Question question = new Question();
+        Question wenZhang = quesstionMapper.getByID(id);
+        User user = userMapper.findById(wenZhang.getCreator());
+        return user;
+    }
+
 }
