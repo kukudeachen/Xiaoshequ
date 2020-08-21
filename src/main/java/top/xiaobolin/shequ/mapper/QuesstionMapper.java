@@ -1,11 +1,9 @@
 package top.xiaobolin.shequ.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.apache.taglibs.standard.extra.spath.Step;
 import top.xiaobolin.shequ.dto.QuestionDTO;
+import top.xiaobolin.shequ.model.Huifu;
 import top.xiaobolin.shequ.model.Question;
 
 import java.util.List;
@@ -35,4 +33,15 @@ public interface QuesstionMapper {
     @Select("select * from question where id = #{id}")
     Question getByID(@Param("id") Integer id);
 
+    @Insert("insert into `shequ`.`huifu` (`username`, `usertou`, `huifubody`, `chengjie_shang`,`chengji_xia`, `gmt_create`, `gmt_modified`) values (#{userName},#{userTou},#{huiFuBody},#{chengJieShang},#{chengJieXia},#{gmtCreate},#{gmtModified})")
+    void huifuone(Huifu huifu);
+
+    @Select("SELECT question.`comment_count` FROM question WHERE id = #{id}")
+    int cpls(@Param("id") int id);
+
+    @Update("update `shequ`.`question` set `comment_count` =#{i1}   where `id` = #{id}")
+    void xpls(@Param("i1") int i1,@Param("id") int id);
+
+    @Select("SELECT * FROM huifu WHERE chengjie_shang = #{id}")
+    List<Huifu> selecthuifuone(@Param("id") Integer id);
 }

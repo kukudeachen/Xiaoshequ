@@ -64,8 +64,7 @@
                 </em>
             </div>
             <div class="wenzhang-bady">
-                <input type="hidden" id="shuju" th:value="${wenzhang}">
-                <div class="wenti-body" id="wenzhangneirong">
+                <div class="wenti-body" id="wenzhangneirong" th:utext="${wenzhang}">
 
                 </div>
                 <hr class="wentiye-hr"/>
@@ -75,22 +74,40 @@
                     本文地址：http://elasticsearch.cn/article/14063
                 </div>
                 <hr class="wentiye-hr"/>
-                <h3 style="font-family: fz"><span th:text="${wenZhangYe.getCommentCount()}"></span>个回复</h3>
+                <h3 style="font-family: fz"><span th:text="${wenZhangYe.getCommentCount()}" ></span>个回复</h3>
+                <input type="hidden" th:value="${wenZhangYe.getCommentCount()}" id="angtang">
                 <hr class="wentiye-hr"/>
+
+                <div class="media btn-publish-zhanshi-body" th:each="huifuone : ${huifuone}">
+                    <div class="media-left">
+                        <div style="float: right;font-family:fz1;color: #999"><span th:text="${#dates.format(huifuone.getGmtModified(),'yyyy-MM-dd HH:mm')}"></span></div>
+                        <dl>
+                            <dt class="mod-left">
+                                <img th:src="${huifuone.getUserTou()}" alt="头像" class="img-rounded mod-touxiang" style="margin-right: 10px">
+                            </dt>
+                            <dd class="mod-left">
+                                <a href="#">
+                                <span class="mod-name" th:text="${huifuone.getUserName()}"></span>
+                                </a>
+                            </dd>
+                        </dl>
+                        <div class="media-body" id="huifuone" th:utext="${huifuone.getHuiFuBody()}"></div>
+                    </div>
+
+                </div>
+
+
                 <div th:if="${usertwo!=null}">
                     <div>
                         <dl>
                             <dt class="mod-left">
                                 <img th:src="${usertwo.getFigureurlQq()}" alt="头像" class="img-rounded mod-touxiang">
                             </dt>
-                            <dd class="mod-left">
-                                <span class="mod-name" th:text="${usertwo.getName()}"></span>
-                            </dd>
                         </dl>
                     </div>
                     <form method="get" action="/huifu">
-                        <div id="editor"><span style="color: red">欢迎评论！！！</span></div>
-                        <textarea style="display: none" name="description" id="txtIntrotwo"></textarea>
+                        <div id="editor"></div>
+                        <textarea style="display: none" name="huifuone" id="txtIntro"></textarea>
                         <div>
                             <button type="submit" class="btn btn-success huifu">回复</button>
                         </div>
@@ -110,7 +127,7 @@
                 <dl>
                 <dt class="mod-left">
                     <a href="#">
-                    <img th:src="${user.getFigureurlQq()}" alt="头像" class="img-rounded mod-touxiang">
+                    <img th:src="${user.getFigureurlQq()}" alt="头像" class="img-rounded mod-touxiang" style="margin-right: 20px">
                     </a>
                 </dt>
                 <dd class="mod-left">
@@ -118,7 +135,6 @@
                 </dd>
                 </dl>
             </div>
-            <div ></div>
             <hr/>
             <div class="wentou-you-zuozhe">
                 <h3 class="mod-head" style="font-family:'fz1'">热门活动</h3>
@@ -130,17 +146,14 @@
 <script type="text/javascript">
     var E = window.wangEditor;
     var editor = new E('#editor');
-    var $text = $("#txtIntrotwo");
-    editor.customConfig.onchangtwo = function(html){
+    var $text = $('#txtIntro');
+    // 监控wangEditor中的内容变化，并将html内容同步更新到 textarea
+    editor.customConfig.onchange = function (html) {
         $text.val(html);
+
     }
     editor.create();
     E.fullscreen.init(editor);
     E.viewSource.init(editor);
-</script>
-<script type="text/javascript">
-    var shuju = $("#shuju").val();
-    let byId = document.getElementById("wenzhangneirong");
-    byId.innerHTML = shuju;
 </script>
 </html>
