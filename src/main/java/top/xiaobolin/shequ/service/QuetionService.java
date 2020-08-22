@@ -99,4 +99,9 @@ public class QuetionService {
         }
         return select;
     }
+
+    public int seletView(Integer id) {
+        int i = quesstionMapper.seletView(id);
+        return i;
+    }
 }

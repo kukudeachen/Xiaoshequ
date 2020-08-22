@@ -1,9 +1,6 @@
 package top.xiaobolin.shequ.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import top.xiaobolin.shequ.model.User;
 
 /**
@@ -20,4 +17,7 @@ public interface UserMapper {
 
     @Select("select * from user where id = #{id}")
     User findById(@Param("id") Integer id);
+
+    @Update("update `shequ`.`user` set `name` = #{name} where `account_id` = #{accountId}")
+    void fuGaiName(@Param("name") String name,@Param("accountId") String accountId);
 }

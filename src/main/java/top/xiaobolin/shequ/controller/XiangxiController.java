@@ -33,6 +33,9 @@ public class XiangxiController {
             Model model,
             HttpServletRequest request
     ){
+        int i = quetionService.seletView(id);
+        int i1 = i+1;
+        quesstionMapper.updataView(id,i1);
         request.getSession().setAttribute("id",id);
         Question wenZhangYe = quetionService.getById(id);
         User user = quetionService.getUser(id);

@@ -44,4 +44,10 @@ public interface QuesstionMapper {
 
     @Select("SELECT * FROM huifu WHERE chengjie_shang = #{id}")
     List<Huifu> selecthuifuone(@Param("id") Integer id);
+
+    @Select("SELECT `view_count` FROM question WHERE `id`=#{id}")
+    int seletView(@Param("id") Integer id);
+
+    @Update("update `shequ`.`question` set `view_count` = #{i1} where `id` = #{id}")
+    void updataView(@Param("id") Integer id, @Param("i1") int i1);
 }
