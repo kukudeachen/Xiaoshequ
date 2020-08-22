@@ -36,7 +36,19 @@
     <style>
         @font-face {
             font-family:fz1;
-            src: url("./fonts/FZZJ-YDSXSJW.TTF");
+            src: url("./fonts/FZSJ-ZUIJYLBYY.TTF");
+        }
+    </style>
+    <style>
+        @font-face {
+            font-family:fz2;
+            src: url("./fonts/FZSJ-GUIQLX.TTF");
+        }
+    </style>
+    <style>
+        @font-face {
+            font-family:fz3;
+            src: url("./fonts/FZFWZhuZiAOldMinchoL.TTF");
         }
     </style>
     <link rel="stylesheet" href="../static/css/wenzhang.css">
@@ -64,7 +76,7 @@
                 </em>
             </div>
             <div class="wenzhang-bady">
-                <div class="wenti-body" id="wenzhangneirong" th:utext="${wenzhang}">
+                <div class="wenti-body" id="wenzhangneirong" style="font-family: fz3;" th:utext="${wenzhang}">
 
                 </div>
                 <hr class="wentiye-hr"/>
@@ -91,7 +103,7 @@
                                 </a>
                             </dd>
                         </dl>
-                        <div class="media-body" id="huifuone" th:utext="${huifuone.getHuiFuBody()}"></div>
+                        <div class="media-body" id="huifuone" style="font-family: fz3" th:utext="${huifuone.getHuiFuBody()}"></div>
                     </div>
 
                 </div>
@@ -121,7 +133,7 @@
         <!--右边-->
         <div class="col-lg-3 col-md-12 col-xs-12">
             <div class="wentou-you-zuozhe">
-                <h3 class="mod-head" style="font-family:'fz1'">发起人</h3>
+                <h3 class="mod-head" style="font-family:'fz2'">发起人</h3>
             </div>
             <div class="modal-body">
                 <dl>
@@ -137,7 +149,7 @@
             </div>
             <hr/>
             <div class="wentou-you-zuozhe">
-                <h3 class="mod-head" style="font-family:'fz1'">热门活动</h3>
+                <h3 class="mod-head" style="font-family:'fz'">热门活动</h3>
             </div>
         </div>
     </div>

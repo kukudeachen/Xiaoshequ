@@ -20,6 +20,30 @@
             overflow: hidden;
         }
     </style>
+    <style>
+        @font-face {
+            font-family:fz;
+            src: url("./fonts/FZZJ-YDSXSJW.TTF");
+        }
+    </style>
+    <style>
+        @font-face {
+            font-family:fz1;
+            src: url("./fonts/FZSJ-ZUIJYLBYY.TTF");
+        }
+    </style>
+    <style>
+        @font-face {
+            font-family:fz2;
+            src: url("./fonts/FZSJ-GUIQLX.TTF");
+        }
+    </style>
+    <style>
+        @font-face {
+            font-family:fz3;
+            src: url("./fonts/FZFWZhuZiAOldMinchoL.TTF");
+        }
+    </style>
 </head>
 <body>
 <div th:insert="navigation::nav"></div>
@@ -27,7 +51,7 @@
     <div class="row mian">
         <div class="col-lg-9 col-md-12 col-xs-12">
             <ul class="nav nav-tabs aw-nav-tabs active hidden-xs">
-                <h3 style="margin-top: 25px">
+                <h3 style="margin-top: 25px;font-family: fz1">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-icon_A"></use>
                     </svg>
@@ -47,11 +71,11 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <a th:href="@{'/wenti?id='+${question.getId()}}" style="text-decoration: none;">
+                    <a th:href="@{'/wenti?id='+${question.getId()}}" style="text-decoration: none;font-family: fz">
                         <h4 class="media-heading" th:text="${question.getTitle()}"></h4>
                     </a>
                     <br/>
-                    <span class="text-desc">
+                    <span class="text-desc" style="font-family: fz1;color: #999">
                         <span th:text="${question.getCommentCount()
                     }"/> 个回复
                         •
@@ -117,10 +141,10 @@
             </nav>
         </div>
         <div class="col-lg-3 col-md-12 col-xs-12">
-            <h3>热门书籍</h3>
+            <h3 style="font-family: fz">热门书籍</h3>
             <img src="img/mysql.gif" style="width: 250px;height: 300px">
             <hr/>
-            <h3>作者正在修复Bug</h3>
+            <h3 style="font-family: fz">作者正在修复Bug</h3>
             <img src="img/resolveBug.gif" style="margin-bottom: 30px;width: 220px;height: 110px">
         </div>
     </div>
