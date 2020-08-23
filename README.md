@@ -33,10 +33,6 @@ CREATE TABLE `user` (
 ```
 ## 码问社区
 
-## 在线演示地址
-[www.mawen.co](http://www.mawen.co)
-![](https://imgkr.cn-bj.ufileos.com/aa5c5b72-0164-4bca-9100-2f4e7f6f0eef.png)
-
 ## 功能列表  
 开源论坛、问答系统，现有功能提问、回复、通知、最新、最热、消除零回复功能。功能持续更新中…… 
 
@@ -54,14 +50,6 @@ CREATE TABLE `user` (
 |UFile|https://github.com/ucloud/ufile-sdk-java|
 |Bootstrap|https://v3.bootcss.com/getting-started/|
 
-## 在线视频
-|  标题   |  链接   |
-| --- | --- |
-|  【Spring Boot 实战】论坛项目【第一季】   |  https://www.bilibili.com/video/BV1r4411r7au  |
-|  【Spring Boot 实战】热门话题【第二季】 |  https://www.bilibili.com/video/BV1Z4411f7RK  |
-|  【Spring Boot 实战】接入广告流量变现【第三季】  | https://www.bilibili.com/video/BV1L4411y7J9  |
-|  【Spring Boot 实战】Vue 零基础入门【第四季】  |   https://www.bilibili.com/video/BV1gE411R7YA |
-|  【Spring Boot 实战】快速搭建免费 HTTPS 服务  |   https://www.bilibili.com/video/BV1oJ411K7VT  |
 
 ## 本地运行手册
 1. 安装必备工具  
