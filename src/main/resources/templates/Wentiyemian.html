@@ -63,7 +63,7 @@
                 <h2><span style="font-family:'fz'" th:text="${wenZhangYe.getTitle()}"></span></h2>
                 <em class="font-color-999">
                     <a class="aw-question-tags" href="#" style="text-decoration: none" th:text="${wenZhangYe.getTag()}"></a>
-                    |作者
+                    |作者:
                     <a href="#" style="text-decoration: none" th:text="${user.getName()}"></a>
                     |发布时间:
                     <span th:text="${#dates.format(wenZhangYe.getGmtCreate(),'yyyy-MM-dd HH:mm')}"></span>

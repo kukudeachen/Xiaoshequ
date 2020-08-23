@@ -9,7 +9,7 @@
     background-color:white;
 }
 body{
-    background-image: url("https://elasticsearch.cn/static/css/default/img/bg.jpg");
+    background-image: url(/img/bg.jpg);
 }
 .btn-publish-zhanshi-body{
     margin-bottom: 30px;

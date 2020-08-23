@@ -67,10 +67,9 @@
                 </div>
                 <div class="media-body">
                     <a th:href="@{'/wenti?id='+${geRenList.getId()}}" style="text-decoration: none;">
-                        <h4 class="media-heading" th:text="${geRenList.getTitle()}"></h4>
+                        <h4 class="media-heading" style="font-family: fz1" th:text="${geRenList.getTitle()}"></h4>
                     </a>
-                    <br/>
-                    <span class="text-desc">
+                    <span class="text-desc" style="font-family: fz1;font-size: 12px;color: #999">
                         <span th:text="${geRenList.getCommentCount()
                     }"/> 个回复
                         •

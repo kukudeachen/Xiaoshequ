@@ -79,6 +79,8 @@ public class QuetionService {
         Question question = new Question();
         Question wenZhang = quesstionMapper.getByID(id);
         User user = userMapper.findById(wenZhang.getCreator());
+        String s = EmojiParser.parseToUnicode(user.getName());
+        user.setName(s);
         return user;
     }
 

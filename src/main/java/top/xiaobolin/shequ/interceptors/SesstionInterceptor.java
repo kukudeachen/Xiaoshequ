@@ -1,5 +1,6 @@
 package top.xiaobolin.shequ.interceptors;
 
+import com.vdurmont.emoji.EmojiParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -30,6 +31,8 @@ public class SesstionInterceptor implements HandlerInterceptor {
                     String token = cookie.getValue();
                     User user = userMapper.findByToken(token);
                     if (user != null) {
+                        String s = EmojiParser.parseToUnicode(user.getName());
+                        user.setName(s);
                         request.getSession().setAttribute("user", user);
                     }
                 }
