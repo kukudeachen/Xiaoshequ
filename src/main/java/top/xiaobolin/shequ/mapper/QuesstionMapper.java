@@ -2,6 +2,7 @@ package top.xiaobolin.shequ.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.apache.taglibs.standard.extra.spath.Step;
+import org.springframework.stereotype.Service;
 import top.xiaobolin.shequ.dto.QuestionDTO;
 import top.xiaobolin.shequ.model.Huifu;
 import top.xiaobolin.shequ.model.Question;
@@ -50,4 +51,7 @@ public interface QuesstionMapper {
 
     @Update("update `shequ`.`question` set `view_count` = #{i1} where `id` = #{id}")
     void updataView(@Param("id") Integer id, @Param("i1") int i1);
+
+    @Select("SELECT * FROM question WHERE id=#{id}")
+    Question selectXuiGai(int id);
 }

@@ -34,6 +34,7 @@ public class SesstionInterceptor implements HandlerInterceptor {
                         String s = EmojiParser.parseToUnicode(user.getName());
                         user.setName(s);
                         request.getSession().setAttribute("user", user);
+                        request.getSession().setAttribute("eID",user.getAccountId());
                     }
                 }
             }

@@ -15,9 +15,7 @@
     <script src="./js/wangEditor-fullscreen-plugin.js"></script>
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://at.alicdn.com/t/font_1958467_kkned4ve3v.js"></script>
-    <script src="https://at.alicdn.com/t/font_1958467_6fmqea0lcuw.js"></script>
-    <script src="https://at.alicdn.com/t/font_1958467_q7afncrstr.js"></script>
+    <script src="https://at.alicdn.com/t/font_1958467_4nnn3m4be1e.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <style type="text/css">
         .icon {
@@ -80,13 +78,31 @@
 
                 </div>
                 <hr class="wentiye-hr"/>
+                <div>
+                    <span style="float: right">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-jubao"></use>
+                            </svg>
+                                <a href="#">
+                                    举报
+                                </a>
+                    </span>
+                    <span th:if="${upBianJi=='yes'}" style="float: right">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-bianji"></use>
+                            </svg>
+                                <a th:href="@{'/bianji?id='+${wenZhangYe.getId()}}">
+                                编辑
+                                </a>
+                    </span>
+
+                </div>
                 <div class="aw-question-tags">
                     [尊重社区原创，转载请保留或注明出处]
                     <br/>
-                    本文地址：http://elasticsearch.cn/article/14063
                 </div>
                 <hr class="wentiye-hr"/>
-                <h3 style="font-family: fz"><span th:text="${wenZhangYe.getCommentCount()}" ></span>个回复</h3>
+                <h3 style="font-family: fz;margin-top: 10px"><span th:text="${wenZhangYe.getCommentCount()}" ></span>个回复</h3>
                 <input type="hidden" th:value="${wenZhangYe.getCommentCount()}" id="angtang">
                 <hr class="wentiye-hr"/>
 

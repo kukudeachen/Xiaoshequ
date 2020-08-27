@@ -27,6 +27,7 @@ public class XiangxiController {
 
     @Autowired
     private QuesstionMapper quesstionMapper;
+
     @GetMapping("/wenti")
     public String Xiangxiwenti(
             @RequestParam(name = "id")Integer id,
@@ -40,6 +41,9 @@ public class XiangxiController {
         Question wenZhangYe = quetionService.getById(id);
         User user = quetionService.getUser(id);
         List<Huifu> huifuone = quetionService.getHuifuone(id);
+        if (wenZhangYe.getAccountId().equals(request.getSession().getAttribute("eID"))){
+            model.addAttribute("upBianJi","yes");
+        }
         model.addAttribute("huifuone",huifuone);
         model.addAttribute("user",user);
         model.addAttribute("usertwo",request.getSession().getAttribute("user"));
