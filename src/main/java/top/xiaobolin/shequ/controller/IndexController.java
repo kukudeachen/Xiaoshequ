@@ -47,7 +47,6 @@ public class IndexController {
         model.addAttribute("zongYeShu", fenye.getZongYeShu());
         if (page != null || page != 0) {
             List<QuestionDTO> questionList = quetionService.list(kaishi, size);
-
             model.addAttribute("question", questionList);
         }
         return "index";

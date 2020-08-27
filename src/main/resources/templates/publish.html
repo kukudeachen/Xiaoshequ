@@ -132,11 +132,37 @@
     editor.customConfig.onchange = function (html) {
         $text1.val(html);
     };
+    //开启debug模式
+    editor.customConfig.debug=true;
     //    设置上传本地图片到服务器
-    editor.customConfig.uploadImgServer = '/upload';
+    editor.customConfig.uploadFileName='myFile';//设置上传的名称参数
+    editor.customConfig.uploadImgMaxSize=5*1024*1024;
+    editor.customConfig.uploadImgServer="/upload"
+    //自定义上传图片事件
+    editor.customConfig.uploadImgHooks = {
+        before: function(xhr, editor, files) {
+
+        },
+        success: function(xhr, editor, result) {
+            console.log("上传成功");
+        },
+        fail: function(xhr, editor, result) {
+            console.log("上传失败,原因是" + result);
+        },
+        error: function(xhr, editor) {
+            console.log("上传出错");
+        },
+        timeout: function(xhr, editor) {
+            console.log("上传超时");
+        }
+    }
     editor.create();
     $text1.val(editor.txt.html());// 初始化 textarea 的值
     E.fullscreen.init(editor);
-    E.viewSource.init(editor)
+    E.viewSource.init(editor);
+
+
+    //图片上传
+
 </script>
 </html>

@@ -20,4 +20,7 @@ public interface UserMapper {
 
     @Update("update `shequ`.`user` set `name` = #{name} where `account_id` = #{accountId}")
     void fuGaiName(@Param("name") String name,@Param("accountId") String accountId);
+
+    @Update("update `shequ`.`user` set `figureurl_qq` = #{figureurlQq} where `account_id` = #{accountId}")
+    void fuGaiTou(@Param("figureurlQq") String figureurlQq,@Param("accountId") String accountId);
 }

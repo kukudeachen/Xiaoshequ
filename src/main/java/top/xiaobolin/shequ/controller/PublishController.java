@@ -60,16 +60,16 @@ public class PublishController {
             model.addAttribute("error","标签不能为空！");
             return "publish";
         }
-            Question question = new Question();
-            question.setTitle(title);
-            String neirong = EmojiParser.parseToAliases(description);//将表情符号转为字符
+        Question question = new Question();
+        question.setTitle(title);
+        String neirong = EmojiParser.parseToAliases(description);//将表情符号转为字符/////
             question.setDescription(neirong);
             question.setTag(tag);
             question.setCreator(user.getId());
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreate());
             question.setAccountId(user.getAccountId());
-            String s = EmojiParser.parseToAliases(user.getName());//表情转换
+            String s = EmojiParser.parseToAliases(user.getName());//表情转换/////
             question.setUserName(s);
             quesstionMapper.create(question);
             return "redirect:/";

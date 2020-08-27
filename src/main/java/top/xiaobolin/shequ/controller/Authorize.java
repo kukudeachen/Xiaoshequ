@@ -79,6 +79,7 @@ public class Authorize {
             //登录成功，写cookie和session
             response.addCookie(new Cookie("token",token));
             userMapper.fuGaiName(user.getName(),user.getAccountId());
+            userMapper.fuGaiTou(user.getFigureurlQq(),user.getAccountId());
             return "redirect:/";
         }else{
             //登录失败，重新登录

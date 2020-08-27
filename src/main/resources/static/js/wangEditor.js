@@ -548,7 +548,7 @@ var config = {
     // 默认菜单配置
     menus: ['head', 'bold', 'fontSize', 'fontName', 'italic', 'underline', 'strikeThrough', 'foreColor', 'backColor', 'link', 'list', 'justify', 'quote', 'emoticon', 'image', 'table', 'video', 'code', 'undo', 'redo'],
 
-    fontNames: ['宋体', '微软雅黑', 'Arial', 'Tahoma', 'Verdana'],
+    fontNames: ['宋体', '微软雅黑', 'Arial', 'Tahoma', 'Verdana','fz1'],
 
     colors: ['#000000', '#eeece0', '#1c487f', '#4d80bf', '#c24f4a', '#8baa4a', '#7b5ba1', '#46acc8', '#f9963b', '#ffffff'],
 
@@ -656,13 +656,13 @@ var config = {
     uploadImgMaxSize: 5 * 1024 * 1024,
 
     // 配置一次最多上传几个图片
-    // uploadImgMaxLength: 5,
+    uploadImgMaxLength: 5,
 
     // 上传图片，是否显示 base64 格式
     uploadImgShowBase64: false,
 
     // 上传图片，server 地址（如果有值，则 base64 格式的配置则失效）
-    // uploadImgServer: '/upload',
+    uploadImgServer: '/upload',
 
     // 自定义配置 filename
     uploadFileName: '',
