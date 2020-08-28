@@ -32,8 +32,6 @@ public class PublishController {
     @Autowired
     private UserMapper userMapper;
 
-    int i =0;
-
     @GetMapping("/publish")
     public String publish(
             Model model
@@ -48,9 +46,11 @@ public class PublishController {
     HttpServletRequest request,
     Model Model
     ){
-        i=id;
         Question question = quesstionMapper.selectXuiGai(id);
+        String s = EmojiParser.parseToUnicode(question.getDescription());
+        question.setDescription(s);
         Model.addAttribute("bianji",question);
+        request.getSession().setAttribute("bianID",question.getId());
         if (question.getAccountId().equals(request.getSession().getAttribute("eID"))){
             Model.addAttribute("publish","bianji");
         }else {
@@ -66,7 +66,6 @@ public class PublishController {
             @RequestParam("tag")String tag,
             HttpServletRequest request,
             Model model){
-            System.out.println(action);
         if (action.equals("shangchuan")){
             User user = (User) request.getSession().getAttribute("user");
             if (user ==null) {
@@ -101,8 +100,10 @@ public class PublishController {
             quesstionMapper.create(question);
             return "redirect:/";
         }else if (action.equals("xiugai")){
-            quesstionMapper.upxiugai(title,description,tag,i);
-            ModelAndView xiugai = new ModelAndView("redirect:/wenti?id="+i);
+            int id = (int) request.getSession().getAttribute("bianID");
+            String description1 = EmojiParser.parseToAliases(description);
+            quesstionMapper.upxiugai(title,description1,tag,id);
+            ModelAndView xiugai = new ModelAndView("redirect:/wenti?id="+id);
             String s = xiugai.getViewName().toString();
             return s;
         }
