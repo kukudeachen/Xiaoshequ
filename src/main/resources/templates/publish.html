@@ -73,6 +73,7 @@
                     <label class="bs-example-navbar-collapse-1" style="font-family: fz3">问题补充(必填，请参照右侧提示) :</label>
                     <div name="description" id="editor"></div>
                     <textarea style="display: none" name="description" id="txtIntro"></textarea>
+                    <textarea style="display: none" name="id" th:value=0></textarea>
                 </div>
                 <div class="form-group">
                     <label for="title_a" style="font-family: fz3">添加标签 :</label>
@@ -132,7 +133,7 @@
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-xiewenzhang"></use>
                 </svg>
-                写文章
+                修改文章
             </h3>
             <hr/>
 
@@ -200,12 +201,10 @@
     var E = window.wangEditor;
     var editor = new E('#editor');
     //  获取隐藏控件<textarea>的id，用于显示内容，也方便后台获取内容
-    var $text1 = $('#txtIntro');
-    var $text2 = $('#text-elem4011442074876743');
-    var $text3 = $('#txtIntro1');
+    var $text2 = $('#txtIntro');
     // 监控wangEditor中的内容变化，并将html内容同步更新到 textarea
     editor.customConfig.onchange = function (html) {
-        $text1.val(html);
+        $text2.val(html);
     };
     //开启debug模式
     editor.customConfig.debug=true;
@@ -214,7 +213,6 @@
     //图片上传
     editor.customConfig.uploadImgShowBase64 = true;
     editor.create();
-    $text1.val(editor.txt.html());// 初始化 textarea 的值
     E.fullscreen.init(editor);
     E.viewSource.init(editor);
 </script>
@@ -234,7 +232,6 @@
     //图片上传
     editor.customConfig.uploadImgShowBase64 = true;
     editor.create();
-    $text1.val(editor.txt.html());// 初始化 textarea 的值
     E.fullscreen.init(editor);
     E.viewSource.init(editor);
 </script>

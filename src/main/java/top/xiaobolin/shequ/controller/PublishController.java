@@ -32,6 +32,8 @@ public class PublishController {
     @Autowired
     private UserMapper userMapper;
 
+    int i =0;
+
     @GetMapping("/publish")
     public String publish(
             Model model
@@ -46,6 +48,7 @@ public class PublishController {
     HttpServletRequest request,
     Model Model
     ){
+        i=id;
         Question question = quesstionMapper.selectXuiGai(id);
         Model.addAttribute("bianji",question);
         if (question.getAccountId().equals(request.getSession().getAttribute("eID"))){
@@ -56,35 +59,33 @@ public class PublishController {
         return "publish";
     }
     @PostMapping("/publish/{action}")
-    public ModelAndView doPublish(
-            @RequestParam("id")int id,
+    public String doPublish(
             @PathVariable("action")String action,
             @RequestParam("title")String title,
             @RequestParam("description")String description,
             @RequestParam("tag")String tag,
             HttpServletRequest request,
             Model model){
-        ModelAndView modelv = new ModelAndView("redirect:/");
-        ModelAndView publish = new ModelAndView("publish");
+            System.out.println(action);
         if (action.equals("shangchuan")){
             User user = (User) request.getSession().getAttribute("user");
             if (user ==null) {
-                return modelv;
+                return "redirect:/";
             }
             model.addAttribute("title",title );
             model.addAttribute("description",description);
             model.addAttribute("tag",tag);
             if (title == null || title ==""){
                 model.addAttribute("error","标题不能为空！");
-                return publish;
+                return "publish";
             }
             if (description == null || description ==""){
                 model.addAttribute("error","内容不能为空！");
-                return publish;
+                return "publish";
             }
             if (tag == null || tag ==""){
                 model.addAttribute("error","标签不能为空！");
-                return publish;
+                return "publish";
             }
             Question question = new Question();
             question.setTitle(title);
@@ -98,11 +99,12 @@ public class PublishController {
             String s = EmojiParser.parseToAliases(user.getName());//表情转换/////
             question.setUserName(s);
             quesstionMapper.create(question);
-            return modelv;
+            return "redirect:/";
         }else if (action.equals("xiugai")){
-            quesstionMapper.upxiugai(title,description,tag,id);
-            ModelAndView xiugai = new ModelAndView("redirect:/wenti?id="+id);
-            return xiugai;
+            quesstionMapper.upxiugai(title,description,tag,i);
+            ModelAndView xiugai = new ModelAndView("redirect:/wenti?id="+i);
+            String s = xiugai.getViewName().toString();
+            return s;
         }
         return null;
     }
