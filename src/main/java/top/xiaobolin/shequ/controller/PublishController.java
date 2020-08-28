@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import top.xiaobolin.shequ.dto.AccessTokenDTO;
 import top.xiaobolin.shequ.dto.GithubUser;
 import top.xiaobolin.shequ.dto.QuestionDTO;
@@ -55,33 +56,35 @@ public class PublishController {
         return "publish";
     }
     @PostMapping("/publish/{action}")
-    public String doPublish(
+    public ModelAndView doPublish(
+            @RequestParam("id")int id,
             @PathVariable("action")String action,
             @RequestParam("title")String title,
             @RequestParam("description")String description,
             @RequestParam("tag")String tag,
             HttpServletRequest request,
             Model model){
-        System.out.println(action);
+        ModelAndView modelv = new ModelAndView("redirect:/");
+        ModelAndView publish = new ModelAndView("publish");
         if (action.equals("shangchuan")){
             User user = (User) request.getSession().getAttribute("user");
             if (user ==null) {
-                return "redirect:/";
+                return modelv;
             }
             model.addAttribute("title",title );
             model.addAttribute("description",description);
             model.addAttribute("tag",tag);
             if (title == null || title ==""){
                 model.addAttribute("error","标题不能为空！");
-                return "publish";
+                return publish;
             }
             if (description == null || description ==""){
                 model.addAttribute("error","内容不能为空！");
-                return "publish";
+                return publish;
             }
             if (tag == null || tag ==""){
                 model.addAttribute("error","标签不能为空！");
-                return "publish";
+                return publish;
             }
             Question question = new Question();
             question.setTitle(title);
@@ -95,10 +98,11 @@ public class PublishController {
             String s = EmojiParser.parseToAliases(user.getName());//表情转换/////
             question.setUserName(s);
             quesstionMapper.create(question);
-            return "redirect:/";
+            return modelv;
         }else if (action.equals("xiugai")){
-
-            return "a";
+            quesstionMapper.upxiugai(title,description,tag,id);
+            ModelAndView xiugai = new ModelAndView("redirect:/wenti?id="+id);
+            return xiugai;
         }
         return null;
     }

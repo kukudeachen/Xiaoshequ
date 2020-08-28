@@ -54,4 +54,7 @@ public interface QuesstionMapper {
 
     @Select("SELECT * FROM question WHERE id=#{id}")
     Question selectXuiGai(int id);
+
+    @Update("update `shequ`.`question` set `title` = #{title} , `description` = #{description} , `tag` = #{tag} where `id` = #{id}")
+    void upxiugai(@Param("title") String title,@Param("description") String description,@Param("tag") String tag,@Param("id") int id);
 }
