@@ -1,6 +1,7 @@
 package top.xiaobolin.shequ.controller;
 
 import com.vdurmont.emoji.EmojiParser;
+import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import top.xiaobolin.shequ.provider.GithubProvider;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -75,9 +77,15 @@ public class Authorize {
             user.setGemCreate(System.currentTimeMillis());
             user.setGemModified(user.getGemCreate());
             user.setFigureurlQq(githubUser.getFigureurlQq());
+            user.setCishu(1);
             userMapper.insert(user);
             //登录成功，写cookie和session
             response.addCookie(new Cookie("token",token));
+            int selectcishu = userMapper.selectcishu(user.getAccountId());
+            System.out.println(selectcishu);
+                request.getSession().setAttribute("cishu",selectcishu);
+            int selectcishu1 = selectcishu + 1;
+            userMapper.upcishu(selectcishu1,user.getAccountId());
             userMapper.fuGaiName(user.getName(),user.getAccountId());
             userMapper.fuGaiTou(user.getFigureurlQq(),user.getAccountId());
             return "redirect:/";

@@ -72,6 +72,7 @@ public class IndexController {
         }
         model.addAttribute("zongYeShu",fenye.getZongYeShu());
         model.addAttribute("dangQianYe",fenye.getDangQIanYe());
+        model.addAttribute("index","yes");
         return "index";
     }
     @GetMapping("/tuichu")

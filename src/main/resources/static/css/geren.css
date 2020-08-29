@@ -1,0 +1,66 @@
+.geren-da-Body{
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    background-color: rgba(0,0,0,.4);
+}
+.geren-xiao-Body{
+    z-index: 3;
+    width: 382px;
+    height: 424px;
+    margin: 150px auto;
+    border-radius: 20px;
+    border: 1px;
+    background-color: #fbfffb;
+}
+.icon-welcome{
+    z-index: 4;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: url(../static/img/emoji_welcome.c00610f0.png);
+}
+.geren-hider{
+    width: 382px;
+    background: #87e16d;
+    height: 48px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.h2-a{
+    z-index: 3;
+    font-size: 20px;
+    margin-left: 142px;
+    padding-top: 17px;
+    font-family: fz;
+}
+.geren-oo-body{
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: #faffff;
+    height: 351px;
+}
+.geren-deposit{
+    bottom: 0;
+    left: 0;
+    width: 382px;
+    height: 25px;
+    background-color: #faffff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.btn-tijiao{
+    display: inline;
+    width: 282px;
+    height: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 1px solid #4f93ff;
+    font-family: fz1;
+    background-color: #4cae4c;
+    color: #fbfffb;
+}

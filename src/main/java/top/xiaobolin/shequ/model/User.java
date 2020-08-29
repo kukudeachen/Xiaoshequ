@@ -16,4 +16,5 @@ public class User {
     private Long gemModified;
     private String bio;
     private String figureurlQq;
+    private int cishu;
 }

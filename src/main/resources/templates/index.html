@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/indexcommit.css">
     <link rel="stylesheet" href="./css/iconfont.css">
     <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./css/geren.css">
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="https://at.alicdn.com/t/font_1958467_kkned4ve3v.js"></script>
     <script src="https://at.alicdn.com/t/font_1958467_6fmqea0lcuw.js"></script>
@@ -46,6 +47,38 @@
     </style>
 </head>
 <body>
+<input th:value="${session.cishu}" id="cishu" style="display:none;"></input>
+<div class="geren-da-Body" id="geren-da-Body">
+    <div class="geren-xiao-Body" id="geren-xiao-Body">
+        <i class="icon-welcome"><img src="img/emoji_welcome.c00610f0.png"></i>
+        <div class="geren-hider">
+            <h2 class="h2-a">联系方式</h2>
+            <div class="geren-oo-body">
+                <form action="/xinxi" method="post">
+                    <div class="form-group" style="padding-top: 35px">
+                        <label for="exampleInputEmail1" style="font-family: fz1">QQ账号</label>
+                        <input type="text" class="form-control" id="QQ" placeholder="QQ" name="QQ" required pattern="[1-9]([0-9]{5,11})">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" style="font-family: fz1">邮箱</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="Email" required pattern="\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" style="font-family: fz1">手机号</label>
+                        <input type="text" class="form-control" id="Phone" placeholder="Phone" name="Phone" required pattern="0?(13|14|15|18)[0-9]{9}" >
+                    </div>
+                    <button type="submit" style="margin-top: 20px" class="btn-tijiao">提交</button>
+                    <div style="font-family: fz1;padding-top: 10px;padding-left: 35px">❤第一次登陆提交下联系方式吧❤</div>
+                </form>
+            </div>
+            <div class="geren-deposit">
+                <i style="font-family: 楷体;font-style: normal;padding-left: 115px;padding-top: 10px">
+                    小柏林社区 ©2019-2020
+                </i>
+            </div>
+        </div>
+    </div>
+</div>
 <div th:insert="navigation::nav"></div>
 <div class="container-fluid">
     <div class="row mian">
@@ -156,7 +189,15 @@
     });
     daovoice('update');
 </script>
-
+<script language="JavaScript">
+   window.onload = function f() {
+       var $cishu = $('#cishu').val();
+       if ($cishu==1){
+           $("#geren-da-Body").show();
+           $("#geren-xiao-Body").show()
+       }
+   }
+</script>
 <div>
     <!-- 音乐播放器跨站插件 -->
     <link href="http://libs.baidu.com/fontawesome/4.2.0/css/font-awesome.css" rel="stylesheet" type="text/css">
