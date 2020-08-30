@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import top.xiaobolin.shequ.dto.Fenye;
 import top.xiaobolin.shequ.dto.QuestionDTO;
+import top.xiaobolin.shequ.mapper.UserMapper;
 import top.xiaobolin.shequ.service.QuetionService;
 
 import javax.servlet.http.Cookie;
@@ -25,6 +26,9 @@ public class IndexController {
 
     @Autowired
     private QuetionService quetionService;
+
+    @Autowired
+    private UserMapper userMapper;
     /*
      * 访问页面
      * */

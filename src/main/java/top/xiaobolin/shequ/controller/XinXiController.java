@@ -3,13 +3,12 @@ package top.xiaobolin.shequ.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import top.xiaobolin.shequ.mapper.QuesstionMapper;
+import top.xiaobolin.shequ.mapper.UserMapper;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigInteger;
 
 /**
  * @author：xiaobolin
@@ -20,18 +19,21 @@ public class XinXiController {
     @Autowired
     QuesstionMapper quesstionMapper;
 
+    @Autowired
+    UserMapper userMapper;
+
     @PostMapping("/xinxi")
     public String XinXi(
-        @RequestParam("QQ")int QQ,
+        @RequestParam("QQ")String QQ,
         @RequestParam("Email")String Email,
-        @RequestParam("Phone")int Phone,
+        @RequestParam("Phone")String Phone,
         HttpServletRequest request
     ){
-        System.out.println(QQ);
-        System.out.println(Email);
-        System.out.println(Phone);
         String eID = (String)request.getSession().getAttribute("eID");
-        quesstionMapper.updatageren(QQ,Email,Phone,eID);
+        String ifok = "1";
+        quesstionMapper.updatageren(eID, QQ, Phone, Email);
+        int selectcishu = userMapper.selectcishu(eID);
+        request.getSession().setAttribute("cishu",selectcishu);
         return "redirect:/";
     }
 }

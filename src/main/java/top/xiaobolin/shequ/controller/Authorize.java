@@ -82,7 +82,6 @@ public class Authorize {
             //登录成功，写cookie和session
             response.addCookie(new Cookie("token",token));
             int selectcishu = userMapper.selectcishu(user.getAccountId());
-            System.out.println(selectcishu);
                 request.getSession().setAttribute("cishu",selectcishu);
             int selectcishu1 = selectcishu + 1;
             userMapper.upcishu(selectcishu1,user.getAccountId());

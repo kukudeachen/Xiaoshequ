@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-<input th:value="${session.cishu}" id="cishu" style="display:none;"></input>
+<input th:value="${session.cishu}" id="cishu" style="display:none;">
 <div class="geren-da-Body" id="geren-da-Body">
     <div class="geren-xiao-Body" id="geren-xiao-Body">
         <i class="icon-welcome"><img src="img/emoji_welcome.c00610f0.png"></i>
@@ -55,7 +55,8 @@
             <h2 class="h2-a">联系方式</h2>
             <div class="geren-oo-body">
                 <form action="/xinxi" method="post">
-                    <div class="form-group" style="padding-top: 35px">
+                    <div style="font-family: fz1;padding-top: 10px;padding-left: 32px">❤第一次登陆提交下联系方式吧❤</div>
+                    <div class="form-group" style="padding-top: 10px">
                         <label for="exampleInputEmail1" style="font-family: fz1">QQ账号</label>
                         <input type="text" class="form-control" id="QQ" placeholder="QQ" name="QQ" required pattern="[1-9]([0-9]{5,11})">
                     </div>
@@ -68,7 +69,7 @@
                         <input type="text" class="form-control" id="Phone" placeholder="Phone" name="Phone" required pattern="0?(13|14|15|18)[0-9]{9}" >
                     </div>
                     <button type="submit" style="margin-top: 20px" class="btn-tijiao">提交</button>
-                    <div style="font-family: fz1;padding-top: 10px;padding-left: 35px">❤第一次登陆提交下联系方式吧❤</div>
+                    <div style="font-family: fz1;padding-top: 10px;padding-left: 32px">❤仔细填写数据上传无法修改嘤❤</div>
                 </form>
             </div>
             <div class="geren-deposit">
@@ -189,12 +190,13 @@
     });
     daovoice('update');
 </script>
+<script src="js/jquerysession.js"></script>
 <script language="JavaScript">
    window.onload = function f() {
        var $cishu = $('#cishu').val();
        if ($cishu==1){
            $("#geren-da-Body").show();
-           $("#geren-xiao-Body").show()
+           $("#geren-xiao-Body").show();
        }
    }
 </script>

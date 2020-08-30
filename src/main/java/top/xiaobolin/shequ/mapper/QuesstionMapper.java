@@ -58,6 +58,6 @@ public interface QuesstionMapper {
     @Update("update `shequ`.`question` set `title` = #{title} , `description` = #{description} , `tag` = #{tag} where `id` = #{id}")
     void upxiugai(@Param("title") String title,@Param("description") String description,@Param("tag") String tag,@Param("id") int id);
 
-    @Update("insert into `shequ`.`useri` (`Account_id`, `Qq`, `Phone`, `Email`) values (#{eID}, #{qq}, #{phone}, #{email})")
-    void updatageren(@Param("QQ") int qq,@Param("Email") String email,@Param("phone") int phone,@Param("eID") String eID);
+    @Update("insert into `shequ`.`useri` (`Account_id`, `Qq`, `Phone`, `Email`) values (#{eID}, #{QQ}, #{phone}, #{email})")
+    int updatageren(@Param("eID") String eID, @Param("QQ") String QQ, @Param("phone") String phone, @Param("email") String email);
 }

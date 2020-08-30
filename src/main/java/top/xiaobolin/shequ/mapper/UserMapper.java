@@ -29,4 +29,5 @@ public interface UserMapper {
 
     @Update("update `shequ`.`user` set `cishu` = #{selectcishu1} where `Account_id` = #{accountId}")
     void upcishu(@Param("selectcishu1") int selectcishu1,@Param("accountId") String accountId);
+
 }
