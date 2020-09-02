@@ -30,7 +30,6 @@ public class XinXiController {
         HttpServletRequest request
     ){
         String eID = (String)request.getSession().getAttribute("eID");
-        String ifok = "1";
         quesstionMapper.updatageren(eID, QQ, Phone, Email);
         int selectcishu = userMapper.selectcishu(eID);
         request.getSession().setAttribute("cishu",selectcishu);
