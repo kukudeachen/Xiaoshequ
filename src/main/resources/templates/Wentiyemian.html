@@ -113,13 +113,15 @@
                             <dt class="mod-left">
                                 <img th:src="${huifuone.getUserTou()}" alt="头像" class="img-rounded mod-touxiang" style="margin-right: 10px">
                             </dt>
-                            <dd class="mod-left">
+                            <p class="mod-left" style="float: left">
                                 <a href="#">
                                 <span class="mod-name" th:text="${huifuone.getUserName()}"></span>
                                 </a>
-                            </dd>
+                            </p>
                         </dl>
+                        <p>
                         <div class="media-body" id="huifuone" style="font-family: fz3" th:utext="${huifuone.getHuiFuBody()}"></div>
+                        </p>
                     </div>
 
                 </div>

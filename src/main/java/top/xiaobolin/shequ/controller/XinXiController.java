@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import top.xiaobolin.shequ.mapper.QuesstionMapper;
 import top.xiaobolin.shequ.mapper.UserMapper;
+import top.xiaobolin.shequ.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigInteger;
