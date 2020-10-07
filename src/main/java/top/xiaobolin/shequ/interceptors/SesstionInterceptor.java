@@ -35,6 +35,7 @@ public class SesstionInterceptor implements HandlerInterceptor {
                         user.setName(s);
                         request.getSession().setAttribute("user", user);
                         request.getSession().setAttribute("eID",user.getAccountId());
+                        request.getSession().setAttribute("wID",user.getAccountId());
                     }
                 }
             }

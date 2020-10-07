@@ -41,8 +41,8 @@ public class XiangxiController {
         Question wenZhangYe = quetionService.getById(id);
         User user = quetionService.getUser(id);
         List<Huifu> huifuone = quetionService.getHuifuone(id);
-        if (wenZhangYe.getAccountId().equals(request.getSession().getAttribute("eID"))){
-            model.addAttribute("upBianJi","yes");
+        if (wenZhangYe.getAccountId().equals(request.getSession().getAttribute("wID"))){
+                model.addAttribute("upBianJi","yes");
         }
         model.addAttribute("huifuone",huifuone);
         model.addAttribute("user",user);
@@ -65,7 +65,7 @@ public class XiangxiController {
         String toAliases = EmojiParser.parseToAliases(huifuone);
         huifu.setHuiFuBody(toAliases);
         huifu.setChengJieShang(id);
-        huifu.setChengJieXia((int) System.currentTimeMillis());
+        huifu.setChengJieXia((int)System.currentTimeMillis());
         huifu.setGmtCreate(System.currentTimeMillis());
         huifu.setGmtModified(huifu.getGmtCreate());
         quesstionMapper.huifuone(huifu);

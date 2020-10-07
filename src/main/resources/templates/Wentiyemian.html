@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${wenZhangYe.getTitle()+'-小柏林社区'}"></title>
+    <link rel="icon" href="img/ico.ico" sizes="32x32">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/indexcommit.css">
@@ -14,8 +15,8 @@
     <script src="./js/wangEditor.min.js"></script>
     <script src="./js/wangEditor-fullscreen-plugin.js"></script>
     <script src="./js/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://at.alicdn.com/t/font_1958467_4nnn3m4be1e.js"></script>
+    <script src="https://www.layuicdn.com/layui-v2.5.6/layui.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <style type="text/css">
         .icon {
@@ -104,23 +105,22 @@
                 <hr class="wentiye-hr"/>
                 <h3 style="font-family: fz;margin-top: 10px"><span th:text="${wenZhangYe.getCommentCount()}" ></span>个回复</h3>
                 <input type="hidden" th:value="${wenZhangYe.getCommentCount()}" id="angtang">
-                <hr class="wentiye-hr"/>
-
                 <div class="media btn-publish-zhanshi-body" th:each="huifuone : ${huifuone}">
+                    <hr style="margin-top: 0px"/>
                     <div class="media-left">
                         <div style="float: right;font-family:fz1;color: #999"><span th:text="${#dates.format(huifuone.getGmtModified(),'yyyy-MM-dd HH:mm')}"></span></div>
                         <dl>
                             <dt class="mod-left">
                                 <img th:src="${huifuone.getUserTou()}" alt="头像" class="img-rounded mod-touxiang" style="margin-right: 10px">
                             </dt>
-                            <p class="mod-left" style="float: left">
+                            <p class="mod-left" style="float: left;margin-bottom: 0px">
                                 <a href="#">
                                 <span class="mod-name" th:text="${huifuone.getUserName()}"></span>
                                 </a>
                             </p>
                         </dl>
                         <p>
-                        <div class="media-body" id="huifuone" style="font-family: fz3" th:utext="${huifuone.getHuiFuBody()}"></div>
+                        <div class="media-body" id="huifuone" style="font-family: fz3;padding-top: 5px" th:utext="${huifuone.getHuiFuBody()}"></div>
                         </p>
                     </div>
 
@@ -167,6 +167,37 @@
             </div>
             <hr/>
             <div class="wentou-you-zuozhe">
+                <h3 class="mod-head" style="font-family:'fz'">问题求助</h3>
+                <blockquote th:bgcolor="red">
+                    <h6 >Email:
+                            <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">点我</a>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="exampleModalLabel">求助人邮箱</h4>
+                                        </div>
+                                        <form  action="/mail/send" method="post">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label  class="control-label">Email:</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="mail" required pattern="\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}">
+                                                    <input type="text" style="display: none" id="href" name="href">
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success">发送</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                        </div>
+                    </h6>
+                </blockquote>
+            </div>
+            <hr/>
+            <div class="wentou-you-zuozhe">
                 <h3 class="mod-head" style="font-family:'fz'">热门活动</h3>
             </div>
         </div>
@@ -185,5 +216,11 @@
     editor.create();
     E.fullscreen.init(editor);
     E.viewSource.init(editor);
+</script>
+<script type="text/javascript">
+    window.onload=function () {
+        var $href = $('#href');
+        $href.val(window.location.href);
+    }
 </script>
 </html>

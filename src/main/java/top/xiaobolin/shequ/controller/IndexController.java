@@ -82,13 +82,15 @@ public class IndexController {
     @GetMapping("/tuichu")
     public String tuichu(
             HttpServletRequest request,
-            HttpServletResponse response
+            HttpServletResponse response,
+            Model model
     ){
         Cookie cookie = new Cookie("token", null);
         cookie.setMaxAge(0);
         cookie.setPath("/");
         response.addCookie(cookie);
         request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute("wID");
         System.out.println("退出成功！！！！");
         return "redirect:/";
     }
