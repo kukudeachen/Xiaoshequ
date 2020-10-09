@@ -5,7 +5,9 @@
     <title th:text="${wenZhangYe.getTitle()+'-小柏林社区'}"></title>
     <link rel="icon" href="img/ico.ico" sizes="32x32">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/geren.css">
     <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/indexcommit.css">
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/nav.css">
@@ -166,6 +168,7 @@
                 </dl>
             </div>
             <hr/>
+            <input type="hidden" id="mail" th:value="${#request.getSession().getAttribute('mail')}">
             <div class="wentou-you-zuozhe">
                 <h3 class="mod-head" style="font-family:'fz'">问题求助</h3>
                 <blockquote th:bgcolor="red">
@@ -187,7 +190,7 @@
 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success">发送</button>
+                                                <button type="submit" class="btn btn-success" id="fasong" onclick="unScroll()">发送</button>
                                             </div>
                                         </form>
                                     </div>
@@ -203,7 +206,19 @@
         </div>
     </div>
 </div>
+<div class="geren-da-Body" id="geren-da-Body">
+    <div class="main">
+        <div class="loading">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
 </body>
+<!--富文本类-->
 <script type="text/javascript">
     var E = window.wangEditor;
     var editor = new E('#editor');
@@ -217,10 +232,23 @@
     E.fullscreen.init(editor);
     E.viewSource.init(editor);
 </script>
-<script type="text/javascript">
+<!--邮箱类-->
+<script type="text/javascript" th:inline="javascript">
     window.onload=function () {
-        var $href = $('#href');
-        $href.val(window.location.href);
+        var href = $('#href');
+        href.val(window.location.href);
+
+    };
+    var data = $("#mail").val();
+    if (data=="ok"){
+        alert("小可爱你的邮件发送成功了！！");
     }
+    function unScroll(){
+            $("#exampleModal").modal("hide");
+            //锁定隐藏滚动条
+            document.documentElement.style.overflowY = 'hidden';
+            $("#geren-da-Body").show();
+    }
+
 </script>
 </html>
