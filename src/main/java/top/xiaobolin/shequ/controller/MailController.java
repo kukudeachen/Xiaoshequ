@@ -51,7 +51,6 @@ public class MailController {
         try {
             mailSender.send(message);
             request.getSession().setAttribute("mail","ok");
-            request.getSession().setMaxInactiveInterval(1);
             logger.info("邮件已发送。");
         } catch (Exception e) {
             logger.error("发送邮件时发生异常了！", e);
