@@ -31,6 +31,7 @@ public class XiangxiController {
     @GetMapping("/wenti")
     public String Xiangxiwenti(
             @RequestParam(name = "id")Integer id,
+            @RequestParam(name = "ok",required = false,defaultValue = "no")String ok,
             Model model,
             HttpServletRequest request
     ){
@@ -49,6 +50,8 @@ public class XiangxiController {
         model.addAttribute("usertwo",request.getSession().getAttribute("user"));
         model.addAttribute("wenZhangYe",wenZhangYe);
         model.addAttribute("wenzhang",wenZhangYe.getDescription());
+        System.out.println("查控制"+ok);
+        model.addAttribute("ok",ok);
     return "Wentiyemian";
     }
     @GetMapping("/huifu")

@@ -17,7 +17,7 @@
     <script src="./js/wangEditor.min.js"></script>
     <script src="./js/wangEditor-fullscreen-plugin.js"></script>
     <script src="./js/jquery-3.4.1.min.js"></script>
-    <script src="https://at.alicdn.com/t/font_1958467_4nnn3m4be1e.js"></script>
+    <script src="https://at.alicdn.com/t/font_1958467_7t0sdrfzego.js"></script>
     <script src="https://www.layuicdn.com/layui-v2.5.6/layui.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <style type="text/css">
@@ -59,7 +59,7 @@
 <div th:insert="navigation::nav"></div>
 <div class="container-fluid">
     <div class="row mian">
-        <div class="col-lg-9 col-md-12 col-xs-12" style="border-right:1px dashed #0f0f0f">
+        <div class="col-lg-12 col-md-12 col-xs-12" style="border-right:1px dashed #0f0f0f">
             <div class="modal-header" style="margin-bottom: 0px">
                 <h2><span style="font-family:'fz'" th:text="${wenZhangYe.getTitle()}"></span></h2>
                 <em class="font-color-999">
@@ -90,12 +90,20 @@
                                     举报
                                 </a>
                     </span>
-                    <span th:if="${upBianJi=='yes'}" style="float: right">
+                    <span th:if="${upBianJi=='yes'}" style="float: right;margin-left: 10px">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-bianji"></use>
                             </svg>
                                 <a th:href="@{'/bianji?id='+${wenZhangYe.getId()}}">
                                 编辑
+                                </a>
+                    </span>
+                    <span style="float: right">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-youxiang1"></use>
+                            </svg>
+                                <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
+                                    邮箱
                                 </a>
                     </span>
 
@@ -150,30 +158,8 @@
                 </div>
             </div>
         </div>
-        <!--右边-->
-        <div class="col-lg-3 col-md-12 col-xs-12">
-            <div class="wentou-you-zuozhe">
-                <h3 class="mod-head" style="font-family:'fz2'">发起人</h3>
-            </div>
-            <div class="modal-body">
-                <dl>
-                <dt class="mod-left">
-                    <a href="#">
-                    <img th:src="${user.getFigureurlQq()}" alt="头像" class="img-rounded mod-touxiang" style="margin-right: 20px">
-                    </a>
-                </dt>
-                <dd class="mod-left">
-                    <a href="#" class="mod-name" style="text-decoration: none" th:text="${user.getName()}"></a>
-                </dd>
-                </dl>
-            </div>
-            <hr/>
-            <input type="hidden" id="mail" th:value="${#request.getSession().getAttribute('mail')}">
-            <div class="wentou-you-zuozhe">
-                <h3 class="mod-head" style="font-family:'fz'">问题求助</h3>
+        <input type="hidden" id="mail" th:value="${ok}">
                 <blockquote th:bgcolor="red">
-                    <h6 >Email:
-                            <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">点我</a>
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -183,7 +169,7 @@
                                         <form  action="/mail/send" method="post">
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <label  class="control-label">Email:</label>
+                                                    <h6><label  class="control-label">Email:</label></h6>
                                                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="mail" required pattern="\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}">
                                                     <input type="text" style="display: none" id="href" name="href">
                                                 </div>
@@ -196,16 +182,7 @@
                                     </div>
                                 </div>
                         </div>
-                    </h6>
                 </blockquote>
-            </div>
-            <hr/>
-            <div class="wentou-you-zuozhe">
-                <h3 class="mod-head" style="font-family:'fz'">热门活动</h3>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="geren-da-Body" id="geren-da-Body">
     <div class="main">
         <div class="loading">
@@ -240,6 +217,7 @@
 
     };
     var data = $("#mail").val();
+    alert(data);
     if (data=="ok"){
         alert("小可爱你的邮件发送成功了！！");
     }

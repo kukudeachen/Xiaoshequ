@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import top.xiaobolin.shequ.service.Mailservce;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -30,31 +31,28 @@ public class MailController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private JavaMailSender mailSender;
-
-    @Value("${spring.mail.username}")
-    private  String username;
+    Mailservce mailservce;
 
     @RequestMapping("/send")
     public ModelAndView sendMail(
             @RequestParam("mail")String mail,
             @RequestParam("href")String href,
-            HttpServletRequest request
+            HttpServletRequest request,
+            Model model1
     ) {
         int id = (int)request.getSession().getAttribute("id");
-        ModelAndView model = new ModelAndView("redirect:/wenti?id="+id);
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(username);
-        message.setTo(mail);
-        message.setSubject("小柏林社区问题求助");
-        message.setText("你好，小柏林社区发来的邮件，我有一个问题需要你来解答。\n"+href);
+        String s = null;
         try {
-            mailSender.send(message);
-            request.getSession().setAttribute("mail","ok");
+            String mail1 = mailservce.mail(mail, href);
+            System.out.println("mail"+mail1);
+            s = mail1;
             logger.info("邮件已发送。");
         } catch (Exception e) {
             logger.error("发送邮件时发生异常了！", e);
         }
+        System.out.println("邮控制"+s);
+        model1.addAttribute("ok",s);
+        ModelAndView model = new ModelAndView("redirect:/wenti?id="+id);
         return model;
     }
 }
